@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#5b5bd6">
+<title>Miriams English Revision – 15-Minuten-Plan</title>
+<style>
+:root{--bg:#f5f6fb;--card:#fff;--ink:#20233a;--muted:#70748a;--accent:#5b5bd6;--good:#1e9d68;--bad:#d84c63;--soft:#eeeef8}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#eef0ff 0,#f8f8fb 42%,#f5f6fb 100%);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink)}
+.app{max-width:760px;margin:auto;padding:14px 14px 36px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+.brand{font-weight:900;font-size:20px}.date{color:var(--muted);font-size:13px}
+.card{background:var(--card);border-radius:18px;padding:18px;box-shadow:0 5px 20px rgba(30,35,70,.08);margin:12px 0}
+h1,h2,h3{margin:0 0 8px}h1{font-size:24px}h2{font-size:19px}p{line-height:1.45}
+button{border:0;border-radius:12px;padding:11px 15px;font-weight:750;cursor:pointer;background:var(--accent);color:#fff}
+button.secondary{background:#ececf7;color:var(--ink)}
+button.good{background:var(--good)}
+button:disabled{opacity:.45;cursor:not-allowed}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.progress{height:10px;background:#e8e8f1;border-radius:99px;overflow:hidden}.bar{height:100%;background:var(--accent);width:0}
+.daynav{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-top:12px}
+.day{background:#f0f0f8;color:var(--ink);padding:10px 5px;text-align:center;border-radius:12px;font-size:12px}
+.day.active{background:var(--accent);color:white}.day.done{outline:2px solid var(--good)}
+.small{font-size:13px;color:var(--muted)}
+.check{display:flex;align-items:center;gap:8px;margin:9px 0}
+.check input{width:18px;height:18px}
+.vocab{font-size:22px;font-weight:850;text-align:center;margin:14px 0 4px}
+.answer{font-size:18px;text-align:center;min-height:28px;margin:8px}
+.hidden{visibility:hidden}.pill{display:inline-block;background:#eeeef8;padding:5px 9px;border-radius:99px;font-size:12px;font-weight:700}
+.quizbox{text-align:center;padding:10px}.q{font-size:21px;font-weight:800;margin:12px 0}.options{display:grid;gap:8px}
+.option{background:#f0f0f8;color:var(--ink);text-align:left}.option.correct{background:#dff6ea}.option.wrong{background:#ffe1e7}
+.feedback{min-height:24px;font-weight:750;margin:8px}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:7px;border-bottom:1px solid #ececf2;text-align:left}
+details{margin-top:8px}.grammar{background:#f7f7fb;border-radius:12px;padding:12px;margin-top:10px}
+@media(max-width:520px){.app{padding:10px}.card{padding:15px}.day{font-size:11px;padding:9px 2px}.vocab{font-size:20px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top">
+    <div class="brand">📚 Miriam · English Revision</div>
+    <div class="date" id="today"></div>
+  </div>
+
+  <div class="card">
+    <h1>Hallo Miriam! 👋</h1>
+    <p><b>Schön, dass du da bist!</b> Heute lernst du nur 15 Minuten. Danach bist du für heute fertig.</p>
+    <h2 id="welcomeToday"></h2>
+    <p id="welcomeTask"></p>
+    <p class="small">Klicke unten auf den <b>heutigen Tag</b>, um deine Lernrunde zu starten.</p>
+    <div class="progress"><div class="bar" id="overallBar"></div></div>
+    <p class="small" id="overallText"></p>
+    <div class="daynav" id="daynav"></div>
+  </div>
+
+  <div class="card" id="todayCard"></div>
+  <div class="card" id="workCard"></div>
+
+  <div class="card">
+    <h2>Mini-Grammatik</h2>
+    <div class="grammar">
+      <b>Present Perfect</b><br>
+      have/has + 3. Form (past participle)<br>
+      <span class="small">I have played. · She has gone.</span>
+    </div>
+    <div class="grammar">
+      <b>Past Simple</b><br>
+      regelmäßige Verben: -ed · unregelmäßige Verben: 2. Form<br>
+      <span class="small">I played. · She went.</span>
+    </div>
+    <p class="small">Die Grammatik wird im Spiel mit kurzen Aufgaben geübt.</p>
+  </div>
+</div>
+
+<script>
+const vocab = [
+["to give sth. a try","etwas ausprobieren / versuchen"],["to give up","aufgeben"],["audition","Vorsprechen / Casting"],
+["to have got what it takes","das Zeug dazu haben"],["to make it","es schaffen"],["to be on the way up","auf dem Weg nach oben sein"],
+["to get back to sb.","sich bei jemandem zurückmelden"],["to agree","zustimmen"],["to belong to","gehören"],
+["to celebrate","feiern"],["extremely","extrem"],["flute","Flöte"],["singer","Sänger/Sängerin"],
+["successful","erfolgreich"],["talented","talentiert, begabt"],["to spill","verschütten"],["whole","ganz/e/r/s"],
+["critic","Kritiker/Kritikerin"],["brave","mutig"],["not even","(noch) nicht einmal"],["suit","Anzug"],
+["unhappy","unglücklich"],["to waste","verschwenden"],["to feel","(sich) fühlen"],["to get tired of sth.","etw. satt haben"],
+["lyrics","Liedtext"],["to make up","erfinden, sich ausdenken"],["record","(Schall-)Platte"],
+["to seem","wirken, scheinen"],["to sing along","mitsingen"],["tune","Melodie"],["I can't stand it.","Ich kann es nicht ausstehen."],
+["I don't mind.","Ich habe nichts dagegen."],["to come along","mitkommen"],["to take place","stattfinden"],
+["afterwards","danach, anschließend"],["apart from","abgesehen von"],["in my opinion","meiner Meinung nach"],
+["to be interested in","an etw. interessiert sein"],["Me neither.","Ich auch nicht."]
+];
+
+// 5 days: Sat 03.10, Sun 04.10, Mon 05.10, Tue 06.10, Wed 07.10
+const days = [
+{date:"2026-10-03",title:"Samstag · Vokabeln 1",items:vocab.slice(0,10),kind:"vocab"},
+{date:"2026-10-04",title:"Sonntag · Vokabeln 2 + Wiederholung",items:vocab.slice(10,20),kind:"vocab"},
+{date:"2026-10-05",title:"Montag · Vokabeln 3 + Past Simple",items:vocab.slice(20,30),kind:"grammar"},
+{date:"2026-10-06",title:"Dienstag · Vokabeln 4 + Present Perfect",items:vocab.slice(30),kind:"grammar"},
+{date:"2026-10-07",title:"Mittwoch · Testtag · kurze Wiederholung",items:vocab.slice(0,40),kind:"test"}
+];
+
+const key="miriamEnglishRevision202610";
+let state=JSON.parse(localStorage.getItem(key)||'{}');
+let current=0, quizIndex=0, quizScore=0;
+
+function save(){localStorage.setItem(key,JSON.stringify(state));render()}
+function doneKey(i){return "day"+i}
+function isDone(i){return !!state[doneKey(i)]}
+function setDone(i,v){state[doneKey(i)]=v;save()}
+
+
+function realDayIndex(){
+  const start=new Date("2026-10-03T00:00:00");
+  const now=new Date();
+  const diff=Math.floor((new Date(now.getFullYear(),now.getMonth(),now.getDate())-start)/86400000);
+  return Math.max(0,Math.min(days.length-1,diff));
+}
+
+function render(){
+  const now=new Date();
+  const todayIdx=realDayIndex();
+  if(current<todayIdx) current=todayIdx;
+  document.getElementById("today").textContent=now.toLocaleDateString("de-AT",{day:"2-digit",month:"2-digit",year:"numeric"});
+  const labels=["03.10.","04.10.","05.10.","06.10.","07.10."];
+  document.getElementById("daynav").innerHTML=days.map((d,i)=>{
+    const locked=i>todayIdx;
+    return `<button class="day ${i===current?'active':''} ${isDone(i)?'done':''}" ${locked?'disabled':''} onclick="selectDay(${i})">${labels[i]}<br>${isDone(i)?"✓ fertig":locked?"🔒 gesperrt":i===todayIdx?"Heute":"Tag "+(i+1)}</button>`;
+  }).join("");
+  document.getElementById("welcomeToday").textContent=`Heute ist ${days[todayIdx].date.slice(8,10)}.${days[todayIdx].date.slice(5,7)}.`;
+  document.getElementById("welcomeTask").textContent=`Deine heutige Aufgabe: ${days[todayIdx].title.replace(/^[^·]+· /,"")}`;
+  const finished=days.filter((_,i)=>isDone(i)).length;
+  document.getElementById("overallBar").style.width=(finished/days.length*100)+"%";
+  document.getElementById("overallText").textContent=`${finished} von ${days.length} Tagen erledigt`;
+  const d=days[current];
+  const done=isDone(current);
+  document.getElementById("todayCard").innerHTML=`
+    <span class="pill">${current===4?"TESTTAG":"15 MINUTEN"}</span>
+    <h2>${d.title}</h2>
+    <p>${current===4?"Miriam, heute ist Testtag. Nur noch kurz wiederholen – dann ist Schluss.":"Miriam, heute zählt nur diese kleine Einheit. Danach kannst du den Tag abhaken."}</p>
+    <label class="check"><input type="checkbox" ${done?"checked":""} onchange="setDone(${current},this.checked)"> <b>${done?"✓ Geschafft, Miriam! Heute bist du fertig!":"Ich bin für heute fertig."}</b></label>
+  `;
+  if(current===0 || current===1 || current===2 || current===3){
+    document.getElementById("workCard").innerHTML=buildVocabDay(d,current);
+  } else {
+    document.getElementById("workCard").innerHTML=buildTestDay();
+  }
+}
+
+function buildVocabDay(d,day){
+  return `<h2>Heute üben</h2>
+  <p class="small">1. Lies die Wörter laut. 2. Decke die Übersetzung ab. 3. Danach kurze Abfrage.</p>
+  <div class="quizbox">
+    <div class="vocab" id="vocabWord"></div>
+    <div class="answer hidden" id="vocabAnswer"></div>
+    <div class="row" style="justify-content:center">
+      <button class="secondary" onclick="showAnswer()">Übersetzung zeigen</button>
+      <button onclick="nextVocab()">Nächstes</button>
+    </div>
+  </div>
+  <hr>
+  <h3>Heute dran</h3>
+  <table><tr><th>Englisch</th><th>Deutsch</th></tr>${d.items.map(x=>`<tr><td>${x[0]}</td><td>${x[1]}</td></tr>`).join("")}</table>
+  ${day===2?`<div class="grammar"><b>Past Simple – 3 Mini-Aufgaben</b><p>1. Yesterday I ___ (play) football.</p><p>2. She ___ (go) home.</p><p>3. We ___ (watch) a film.</p><p class="small">Lösungen: played · went · watched</p></div>`:""}
+  ${day===3?`<div class="grammar"><b>Present Perfect – 3 Mini-Aufgaben</b><p>1. I ___ (have/has) finished.</p><p>2. She ___ (have/has) gone home.</p><p>3. We ___ (have/has) played.</p><p class="small">Lösungen: have · has · have</p></div>`:""}`;
+}
+
+let vocabPos=0;
+function nextVocab(){
+  const arr=days[current].items;
+  vocabPos=(vocabPos+1)%arr.length;
+  document.getElementById("vocabWord").textContent=arr[vocabPos][0];
+  document.getElementById("vocabAnswer").textContent=arr[vocabPos][1];
+  document.getElementById("vocabAnswer").classList.add("hidden");
+}
+function showAnswer(){
+  const arr=days[current].items;
+  document.getElementById("vocabWord").textContent=arr[vocabPos][0];
+  document.getElementById("vocabAnswer").textContent=arr[vocabPos][1];
+  document.getElementById("vocabAnswer").classList.remove("hidden");
+}
+function buildTestDay(){
+  const pool=vocab.slice();
+  const q=pool[Math.floor(Math.random()*pool.length)];
+  return `<h2>Letzte Mini-Wiederholung</h2>
+  <p>Nur ein paar Wörter und Grammatik – nicht mehr alles auf einmal.</p>
+  <div class="quizbox"><div class="q">${q[0]}</div>
+  <button onclick="this.nextElementSibling.classList.remove('hidden')">Deutsch anzeigen</button>
+  <div class="answer hidden">${q[1]}</div></div>
+  <div class="grammar"><b>Merksatz:</b> Present Perfect = <b>have/has + 3. Form</b> · Past Simple = <b>2. Form / -ed</b></div>`;
+}
+function selectDay(i){
+  if(i>realDayIndex()) return;
+  current=i;vocabPos=0;render();window.scrollTo({top:0,behavior:"smooth"})
+}
+render();
+</script>
+</body>
+</html>
