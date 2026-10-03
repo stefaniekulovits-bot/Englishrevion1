@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#5b5bd6">
 <title>Miriams English Revision</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#eef0ff,#f8f8fb);font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#20233a}.app{max-width:760px;margin:auto;padding:14px}.top{display:flex;justify-content:space-between;gap:10px;margin-bottom:12px}.muted{color:#70748a;font-size:13px}.card{background:#fff;border-radius:20px;padding:18px;margin:12px 0;box-shadow:0 6px 24px #00000012}h1,h2,h3{margin:0 0 10px}p{line-height:1.45}.bar{height:9px;background:#e8e8f1;border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:#5b5bd6;width:0}.days{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-top:14px}.day{border:0;border-radius:13px;padding:10px 4px;background:#eeeef8;color:#20233a;font-weight:800;cursor:pointer}.day.active{background:#5b5bd6;color:#fff}.day.done{outline:2px solid #1e9d68}.day:disabled{opacity:.45;cursor:not-allowed}.pill{display:inline-block;background:#eeeef8;padding:5px 9px;border-radius:20px;font-size:12px;font-weight:800}.q{font-size:26px;font-weight:900;text-align:center;margin:24px 0}.opts{display:grid;gap:9px}.opt{border:0;border-radius:13px;padding:13px 14px;background:#f0f0f8;color:#20233a;text-align:left;font-weight:700;cursor:pointer;font-size:16px}.opt.correct{background:#dff6ea}.opt.wrong{background:#ffe1e7}.feedback{text-align:center;font-weight:800;min-height:28px;margin:12px 0}.primary{width:100%;border:0;border-radius:13px;padding:13px 15px;background:#5b5bd6;color:white;font-weight:800;font-size:16px;cursor:pointer}.primary:disabled{opacity:.45}.hide{display:none}input[type=text]{width:100%;padding:13px;border:2px solid #e3e2ed;border-radius:12px;font-size:18px}.rule{background:#f5f3ff;border-radius:13px;padding:12px;margin-top:12px}.result{text-align:center;font-size:22px;font-weight:900}.error{background:#fff0f2;color:#9d243c;border-radius:13px;padding:12px;display:none;margin-top:12px}@media(max-width:520px){.app{padding:9px}.card{padding:15px}.days{grid-template-columns:repeat(3,1fr)}.q{font-size:22px}}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#eef0ff,#f8f8fb);font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#20233a}.app{max-width:760px;margin:auto;padding:14px}.top{display:flex;justify-content:space-between;gap:10px;margin-bottom:12px}.muted{color:#70748a;font-size:13px}.card{background:#fff;border-radius:20px;padding:18px;margin:12px 0;box-shadow:0 6px 24px #00000012}h1,h2,h3{margin:0 0 10px}p{line-height:1.45}.bar{height:9px;background:#e8e8f1;border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:#5b5bd6;width:0}.days{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-top:14px}.day{border:0;border-radius:13px;padding:10px 4px;background:#eeeef8;color:#20233a;font-weight:800;cursor:pointer}.day.active{background:#5b5bd6;color:#fff}.day.done{outline:2px solid #1e9d68}.day:disabled{opacity:.45;cursor:not-allowed}.pill{display:inline-block;background:#eeeef8;padding:5px 9px;border-radius:20px;font-size:12px;font-weight:800}.q{font-size:26px;font-weight:900;text-align:center;margin:24px 0}.hint{text-align:center;color:#70748a;margin-top:-12px}.opts{display:grid;gap:9px}.opt{border:0;border-radius:13px;padding:13px 14px;background:#f0f0f8;color:#20233a;text-align:left;font-weight:700;cursor:pointer;font-size:16px}.opt.correct{background:#dff6ea}.opt.wrong{background:#ffe1e7}.feedback{text-align:center;font-weight:800;min-height:28px;margin:12px 0}.primary{width:100%;border:0;border-radius:13px;padding:13px 15px;background:#5b5bd6;color:white;font-weight:800;font-size:16px;cursor:pointer}.primary:disabled{opacity:.45}.hide{display:none}input[type=text]{width:100%;padding:13px;border:2px solid #e3e2ed;border-radius:12px;font-size:18px}.rule{background:#f5f3ff;border-radius:13px;padding:12px;margin-top:12px}.result{text-align:center;font-size:22px;font-weight:900}.error{background:#fff0f2;color:#9d243c;border-radius:13px;padding:12px;display:none;margin-top:12px}.smallgood{background:#e7f8ef;color:#176d49;border-radius:12px;padding:10px;text-align:center;font-weight:700}@media(max-width:520px){.app{padding:9px}.card{padding:15px}.days{grid-template-columns:repeat(3,1fr)}.q{font-size:22px}}
 </style>
 </head>
 <body>
@@ -28,26 +29,43 @@
 (function(){
 'use strict';
 
+// Genau die 40 Wörter/Phrasen vom Word File.
 const vocab=[
 ['to give sth. a try','etwas ausprobieren / versuchen'],['to give up','aufgeben'],['audition','Vorsprechen / Casting'],['to have got what it takes','das Zeug dazu haben'],['to make it','es schaffen'],['to be on the way up','auf dem Weg nach oben sein'],['to get back to sb.','sich bei jemandem zurückmelden'],['to agree','zustimmen'],['to belong to','gehören'],['to celebrate','feiern'],['extremely','extrem'],['flute','Flöte'],['singer','Sänger/Sängerin'],['successful','erfolgreich'],['talented','talentiert, begabt'],['to spill','verschütten'],['whole','ganz/e/r/s'],['critic','Kritiker/Kritikerin'],['brave','mutig'],['not even','(noch) nicht einmal'],['suit','Anzug'],['unhappy','unglücklich'],['to waste','verschwenden'],['to feel','(sich) fühlen'],['to get tired of sth.','etw. satt haben'],['lyrics','Liedtext'],['to make up','erfinden, sich ausdenken'],['record','(Schall-)Platte'],['to seem','wirken, scheinen'],['to sing along','mitsingen'],['tune','Melodie'],["I can't stand it.",'Ich kann es nicht ausstehen.'],["I don't mind.",'Ich habe nichts dagegen.'],['to come along','mitkommen'],['to take place','stattfinden'],['afterwards','danach, anschließend'],['apart from','abgesehen von'],['in my opinion','meiner Meinung nach'],['to be interested in','an etw. interessiert sein'],['Me neither.','Ich auch nicht.']
 ];
 
+// Pro Tag 8 neue Vokabeln. Jede davon wird zuerst ausgewählt und danach geschrieben.
 const plans=[
- {date:'2026-10-03',title:'Samstag · Vokabeln 1',start:0,end:10,grammar:null},
- {date:'2026-10-04',title:'Sonntag · Vokabeln 2 + Wiederholung',start:10,end:20,grammar:null},
- {date:'2026-10-05',title:'Montag · Vokabeln 3 + Past Simple',start:20,end:30,grammar:'past'},
- {date:'2026-10-06',title:'Dienstag · Vokabeln 4 + Present Perfect',start:30,end:40,grammar:'perfect'},
- {date:'2026-10-07',title:'Mittwoch · Testtag · Mini-Revision',start:0,end:40,grammar:'mixed'}
+ {date:'2026-10-03',title:'Samstag · Vokabeln 1',start:0,end:8,grammar:null},
+ {date:'2026-10-04',title:'Sonntag · Vokabeln 2',start:8,end:16,grammar:null},
+ {date:'2026-10-05',title:'Montag · Vokabeln 3 + Past Simple',start:16,end:24,grammar:'past'},
+ {date:'2026-10-06',title:'Dienstag · Vokabeln 4 + Present Perfect',start:24,end:32,grammar:'perfect'},
+ {date:'2026-10-07',title:'Mittwoch · Vokabeln 5 + Grammatik',start:32,end:40,grammar:'mixed'}
 ];
 
 const past=[
- ['Yesterday I ___ to school.','went'],['She ___ the song last week.','sang'],['We ___ the concert yesterday.','saw'],['He ___ his homework two hours ago.','did'],['They ___ to London last year.','went']
+ ['Yesterday I ___ to school.','went'],
+ ['She ___ the song last week.','sang'],
+ ['We ___ the concert yesterday.','saw'],
+ ['He ___ his homework two hours ago.','did'],
+ ['They ___ to London last year.','went'],
+ ['I ___ the film yesterday.','watched']
 ];
 const perfect=[
- ['I ___ never ___ to London.','have never been'],['She ___ already ___ her homework.','has already finished'],['We ___ this film before.','have seen'],['He ___ just ___ home.','has just come'],['They ___ never ___ sushi.','have never eaten']
+ ['I ___ never ___ to London.','have never been'],
+ ['She ___ already ___ her homework.','has already finished'],
+ ['We ___ this film before.','have seen'],
+ ['He ___ just ___ home.','has just come'],
+ ['They ___ never ___ sushi.','have never eaten'],
+ ['I ___ already ___ the song.','have already heard']
 ];
 const mixed=[
- ['Yesterday she ___ to the audition.','went'],['She ___ never ___ to an audition.','has never been'],['We ___ this film before.','have seen'],['He ___ to London last year.','went'],['I ___ just ___ my homework.','have just finished']
+ ['Yesterday she ___ to the audition.','went'],
+ ['She ___ never ___ to an audition.','has never been'],
+ ['We ___ this film before.','have seen'],
+ ['He ___ to London last year.','went'],
+ ['I ___ just ___ my homework.','have just finished'],
+ ['They ___ the concert yesterday.','saw']
 ];
 
 let state={};
@@ -73,7 +91,7 @@ function render(){
  const finished=plans.filter((_,i)=>isDone(i)).length;
  $('date').textContent=new Date().toLocaleDateString('de-AT');
  $('todayTitle').textContent=p.title;
- $('task').textContent=current===4?'Heute: kurzer Mini-Test mit Vokabeln und Grammatik.':'Klicke auf deinen Lerntag. Dann geht es direkt los.';
+ $('task').textContent=current===4?'Heute übst du deine letzten 8 Vokabeln und wiederholst die Grammatik.':'Klicke auf deinen Lerntag. Zuerst wählst du die englische Vokabel aus, danach schreibst du sie selbst.';
  $('progress').style.width=(finished/plans.length*100)+'%';
  $('progtext').textContent=finished+' von '+plans.length+' Tagen erledigt';
  $('days').innerHTML='';
@@ -85,16 +103,17 @@ function render(){
    b.addEventListener('click',()=>{current=i;render();});
    $('days').appendChild(b);
  });
- $('daycard').innerHTML='<span class="pill">'+(current===4?'TESTTAG':'15 MINUTEN')+'</span><h2>'+p.title+'</h2><p>Miriam, heute zählt nur diese kleine Einheit.</p><p class="muted">Vokabeln: '+(p.end-p.start)+' Wörter'+(p.grammar?', danach Grammatik zum Schreiben.':'.')+'</p>';
+ $('daycard').innerHTML='<span class="pill">15 MINUTEN</span><h2>'+p.title+'</h2><p>Miriam, heute übst du <b>8 Vokabeln</b>.</p><p class="muted">Ablauf: <b>1. auswählen</b> → <b>2. Englisch schreiben</b>'+(p.grammar?' → <b>3. Grammatik schreiben</b>':'')+'</p>';
  startRound();
 }
 
-function vocabQuestions(start,end,count){
- const arr=shuffle(vocab.slice(start,end)).slice(0,count);
- return arr.map(x=>{
-   const others=shuffle(vocab.filter(y=>y[0]!==x[0])).slice(0,3).map(y=>y[1]);
-   return {type:'v',q:'Was bedeutet „'+x[0]+'“?',correct:x[1],opts:shuffle([x[1]].concat(others))};
- });
+function vocabQuestions(start,end){
+ return vocab.slice(start,end).map(x=>({
+   type:'vselect',
+   german:x[1],
+   correct:x[0],
+   opts:shuffle([x[0]].concat(shuffle(vocab.filter(y=>y[0]!==x[0])).slice(0,3).map(y=>y[0])))
+ })).concat(vocab.slice(start,end).map(x=>({type:'vwrite',german:x[1],correct:x[0]})));
 }
 function grammarQuestions(kind,count){
  let src=kind==='past'?past:kind==='perfect'?perfect:mixed;
@@ -102,58 +121,57 @@ function grammarQuestions(kind,count){
 }
 function startRound(){
  const p=plans[current];
- if(current===4){
-   questions=vocabQuestions(0,40,8).concat(grammarQuestions('mixed',4));
- }else{
-   questions=vocabQuestions(p.start,p.end,Math.min(8,p.end-p.start));
-   if(p.grammar) questions=questions.concat(grammarQuestions(p.grammar,4));
- }
+ questions=vocabQuestions(p.start,p.end);
+ if(p.grammar) questions=questions.concat(grammarQuestions(p.grammar,4));
  questionIndex=0;score=0;showQuestion();
 }
 
 function showQuestion(){
  if(questionIndex>=questions.length){finishRound();return;}
  const x=questions[questionIndex];
- let html='<span class="pill">'+(x.type==='v'?'Vokabel':'Grammatik')+' · '+(questionIndex+1)+'/'+questions.length+'</span>';
- html+='<div class="q">'+x.q+'</div>';
- if(x.type==='v'){
-   html+='<div class="opts" id="opts"></div>';
+ let label=x.type==='vselect'?'Vokabeln · auswählen':x.type==='vwrite'?'Vokabeln · schreiben':'Grammatik · schreiben';
+ let html='<span class="pill">'+label+' · '+(questionIndex+1)+'/'+questions.length+'</span>';
+ if(x.type==='vselect'){
+   html+='<div class="q">'+x.german+'</div><div class="hint">Wähle die richtige englische Vokabel.</div><div class="opts" id="opts"></div>';
+ }else if(x.type==='vwrite'){
+   html+='<div class="q">'+x.german+'</div><div class="hint">Schreibe die englische Vokabel selbst.</div><input id="answerInput" type="text" autocomplete="off" spellcheck="false" placeholder="English word / phrase"><button class="primary" id="checkBtn" style="margin-top:9px">Prüfen</button>';
  }else{
-   html+='<p class="muted">Schreibe die richtige Lösung selbst:</p><input id="answerInput" type="text" autocomplete="off" spellcheck="false"><button class="primary" id="checkBtn" style="margin-top:9px">Prüfen</button>';
+   html+='<div class="q">'+x.q+'</div><div class="hint">Schreibe die fehlende englische Form selbst.</div><input id="answerInput" type="text" autocomplete="off" spellcheck="false" placeholder="English"><button class="primary" id="checkBtn" style="margin-top:9px">Prüfen</button>';
  }
  html+='<div class="feedback" id="feedback"></div><button class="primary hide" id="nextBtn">Weiter</button>';
  if(x.type==='g') html+='<div class="rule"><b>Merke:</b> '+(x.q.includes('Yesterday')||x.q.includes('last')||x.q.includes('ago')?'Past Simple: 2. Form / -ed':'Present Perfect: have/has + 3. Form')+'</div>';
  $('work').innerHTML=html;
- if(x.type==='v'){
+ if(x.type==='vselect'){
    const opts=$('opts');
    x.opts.forEach(o=>{
      const b=document.createElement('button');b.className='opt';b.textContent=o;
-     b.addEventListener('click',()=>answerVocab(b,o));opts.appendChild(b);
+     b.addEventListener('click',()=>answerSelect(b,o));opts.appendChild(b);
    });
  }else{
-   $('checkBtn').addEventListener('click',checkGrammar);
-   $('answerInput').addEventListener('keydown',e=>{if(e.key==='Enter')checkGrammar();});
+   $('checkBtn').addEventListener('click',checkWritten);
+   $('answerInput').addEventListener('keydown',e=>{if(e.key==='Enter')checkWritten();});
    setTimeout(()=>$('answerInput')?.focus(),80);
  }
 }
+function normalize(s){return s.trim().toLowerCase().replace(/[’']/g,"'").replace(/\s+/g,' ')}
 function finishQuestion(ok){
  if(ok)score++;
  const f=$('feedback');f.textContent=ok?'Richtig!':'Noch nicht – richtig wäre: '+questions[questionIndex].correct;f.style.color=ok?'#1e9d68':'#d84c63';
- $('nextBtn').classList.remove('hide');$('nextBtn').addEventListener('click',()=>{questionIndex++;showQuestion();});
+ $('nextBtn').classList.remove('hide');$('nextBtn').addEventListener('click',()=>{questionIndex++;showQuestion();},{once:true});
 }
-function answerVocab(btn,val){
+function answerSelect(btn,val){
  const x=questions[questionIndex];
  document.querySelectorAll('.opt').forEach(b=>{b.disabled=true;if(b.textContent===x.correct)b.classList.add('correct');});
  const ok=val===x.correct;if(!ok)btn.classList.add('wrong');finishQuestion(ok);
 }
-function checkGrammar(){
- const x=questions[questionIndex];const input=$('answerInput');const val=input.value.trim().toLowerCase();
- const ok=val===x.correct.toLowerCase();input.disabled=true;$('checkBtn').disabled=true;finishQuestion(ok);
+function checkWritten(){
+ const x=questions[questionIndex];const input=$('answerInput');const val=normalize(input.value);const ok=val===normalize(x.correct);
+ input.disabled=true;$('checkBtn').disabled=true;finishQuestion(ok);
 }
 function finishRound(){
  state['day'+current]=true;save();
  const pct=Math.round(score/questions.length*100);
- $('work').innerHTML='<div class="result">'+(pct>=80?'Super, Miriam!':pct>=60?'Gut gemacht, Miriam!':'Gut geübt, Miriam!')+'</div><p style="text-align:center">'+score+' von '+questions.length+' richtig</p><p style="text-align:center">Deine 15 Minuten für heute sind geschafft.</p>';
+ $('work').innerHTML='<div class="result">'+(pct>=80?'Super, Miriam!':pct>=60?'Gut gemacht, Miriam!':'Gut geübt, Miriam!')+'</div><p style="text-align:center">'+score+' von '+questions.length+' richtig</p><div class="smallgood">✓ Heute fertig! Du hast deine 15 Minuten geschafft.</div><p class="muted" style="text-align:center">Morgen wartet die nächste kleine Einheit auf dich.</p>';
  renderProgress();
 }
 function renderProgress(){
